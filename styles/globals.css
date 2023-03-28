@@ -1,0 +1,44 @@
+:root {
+  --dblue: #264653;
+  --lblue: #2A9D8F;
+  --yellow: #E9C46A;
+  --orange: #F4A261;
+  --red: #E76F51;
+  --white: #EDF2F4;
+  --dark: #03071e;
+  --font-size: 1.3rem;
+} 
+html {
+    box-sizing: border-box;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--dblue);
+  color: var(--white);
+  font-size: var(--font-size);
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+a {
+  color: var(--lblue);
+}
+
+a:hover {
+  color: var(--lblue);
+  text-decoration: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
