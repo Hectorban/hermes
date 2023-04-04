@@ -2,9 +2,9 @@
   display: flex;
   text-align: left;
   margin-bottom: 0.5rem;
-  display: flex;
   flex-direction: column;
 }
+
 .container input {
   width: 100%;
   padding: 10px;
@@ -15,7 +15,7 @@
 }
 
 .errorMessage {
-  color: #ff0000;
+  color: #f00;
   font-size: 0.8rem;
   margin-top: -0.5rem;
   margin-bottom: 1rem;

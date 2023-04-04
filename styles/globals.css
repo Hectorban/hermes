@@ -8,12 +8,9 @@
   --dark: #03071e;
   --font-size: 1.3rem;
 } 
-html {
-    box-sizing: border-box;
-}
 
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
