@@ -17,22 +17,22 @@ export default function Home() {
         validationSchema={LoginSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
-          const response = await fetch('/api/auth', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          });
+            const response = await fetch('/api/auth', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(values),
+            });
 
-          if (response.ok) {
-            const data = await response.json();
-            console.log('Form submitted successfully:', data);
-            resetForm();
-          } else {
-            console.error('Error submitting form:', response.statusText);
-            resetForm();
-          }
+            if (response.ok) {
+              const data = await response.json();
+              console.log('Form submitted successfully:', data);
+              resetForm();
+            } else {
+              console.error('Error submitting form:', response.statusText);
+              resetForm();
+            }
           } catch (error) {
             console.error('Error submitting form:', error);
           } finally {
