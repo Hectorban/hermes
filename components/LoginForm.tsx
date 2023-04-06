@@ -2,6 +2,9 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/styles/components/LoginForm.module.css'
+import { useState } from 'react';
+import { useCookies } from "react-cookie"
+import { useRouter } from 'next/navigation'
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Required'),
@@ -10,6 +13,9 @@ const LoginSchema = Yup.object().shape({
 
 
 export default function Home() {
+  const [error, setError] = useState('')
+  const [_cookie, setCookie] = useCookies(["user"])
+  const router = useRouter()
   return (
     <>
       <Formik
@@ -25,16 +31,24 @@ export default function Home() {
               body: JSON.stringify(values),
             });
 
+            const data = await response.json();
             if (response.ok) {
-              const data = await response.json();
               console.log('Form submitted successfully:', data);
+              setCookie("user", data.token, {
+                path: "/",
+                maxAge: 43200, // Expires after 12hr
+                sameSite: true,
+              })
+              router.push('/')
               resetForm();
             } else {
               console.error('Error submitting form:', response.statusText);
+              setError(data.error)
               resetForm();
             }
           } catch (error) {
             console.error('Error submitting form:', error);
+            setError('Something fatal has happened')
           } finally {
             setSubmitting(false);
           }
@@ -52,6 +66,7 @@ export default function Home() {
               <Field type="password" name="password" />
               <ErrorMessage className={styles.errorMessage} name="password" component="p" />
             </div>
+            {error ? <p className={styles.errorMessage}>{error}</p> : null}
             <button className={styles.button} type="submit" disabled={isSubmitting}>
               Login
             </button>
